@@ -1,77 +1,130 @@
-# Digital Menu - Restaurant Pilot
+Digital Menu – For Restaurants
+A modern, QR-code accessible digital menu built with the MERN stack, initially tailored for restaurants. The app includes a mobile-friendly customer menu and a secure admin panel for full control over menu management.
 
-A MERN stack web application providing a simple, QR-code accessible digital menu solution designed initially for Ethiopian restaurants in Adama. Includes a customer-facing menu and a comprehensive admin panel for management.
+📝 Overview
+Digital Menu provides restaurants a simple way to display their menu to customers using their phones. With support for Ethiopian fasting options like ጾም (fasting) and ፍስክ (non-fasting), this system helps customers find the right dish fast—while giving restaurant owners full control through an intuitive admin dashboard.
 
-## Overview
+🚀 Key Features
+🧾 Customer View
+Browse all currently available items.
 
-This project provides restaurants with an easy way to offer customers a digital view of their menu via mobile devices. Customers can filter food items, including specific Ethiopian fasting options (ጾም/ፍስክ). Restaurant administrators have a secure panel to manage menu items, control daily availability, upload images via Cloudinary, manage settings like auto-reset, and add other administrators.
+Filter items by category:
 
-## Key Features
+ጾም (Fasting Food)
 
-**Customer View:**
+ፍስክ (Non-Fasting Food)
 
-*   View currently available menu items.
-*   Items categorized as ጾም (Fasting Food), ፍስክ (Non-Fasting Food), or መጠጥ (Drinks).
-*   Filter menu by category or view all items.
-*   Click on an item to view details (image, description, price).
-*   View special availability notes set by the admin (e.g., "Only on weekends").
-*   Responsive design optimized for mobile phones.
-*   Direct access to invalid URLs redirects to the homepage.
+መጠጥ (Drinks)
 
-**Admin Panel:**
+Tap any item for details: image, description, price.
 
-*   **Secure Login:** Separate login page (`/login`) for administrators.
-*   **Protected Routes:** Admin dashboard and actions are protected via JWT authentication (HttpOnly cookies).
-*   **Dashboard Overview:** Central place for management actions.
-*   **Menu Item Management:**
-    *   Add new menu items (name, category, price, description, optional note, image upload).
-    *   Edit existing item details.
-    *   Permanently delete items.
-    *   Upload item images directly (stored on Cloudinary).
-*   **Availability Control:**
-    *   View items based on current status: "አለ" (Available) or "የለም" (Unavailable).
-    *   Toggle item availability with one click.
-*   **Search:** Filter admin menu item list by name.
-*   **Settings:**
-    *   Enable/disable daily auto-reset feature (marks all "የለም" items back to "አለ" at midnight EAT).
-*   **Admin Management:**
-    *   Register additional admin accounts (only possible when logged in as an admin).
-*   **Navigation:** Includes a "Back to Menu" link when viewing admin pages.
+View notes like "Only available on weekends".
 
-## Technology Stack
+Optimized for mobile view.
 
-*   **Frontend:** React (Vite), Zustand, React Router v6, Tailwind CSS, Axios, Headless UI, React Icons
-*   **Backend:** Node.js, Express.js, Mongoose, MongoDB Atlas, JSON Web Tokens (JWT), bcryptjs, Cloudinary, Multer, `node-cron`, `cookie-parser`, `cors`
-*   **Database:** MongoDB
-*   **Image Hosting:** Cloudinary
+Invalid/unknown URLs automatically redirect to the homepage.
 
-## Project Setup and Installation
+🛠️ Admin Panel
+Secure Login: Accessible via /login, secured with JWT and HttpOnly cookies.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <your-repository-url>
-    cd root folder name you want
-    ```
+Protected Routes: Only accessible to authenticated admins.
 
-2.  **Setup Backend:**
-    *   `cd server`
-    *   `npm install`
-    *   Create a `.env` file in `server/` (use `.env.example` if provided, or create manually).
-    *   Fill in the required environment variables (see below).
+Dashboard Overview: Central place to manage everything.
 
-3.  **Setup Frontend:**
-    *   `cd ../client`
-    *   `npm install`
-    *   Create a `.env` file in `client/`.
-    *   Fill in the required environment variables (see below).
+🧆 Menu Management
+Add/edit/delete menu items with:
 
-## Environment Variables
+Name, description, price, category, optional note
 
-Create `.env` files in `server/` and `client/` directories. **Do not commit `.env` files to Git.**
+Image upload via Cloudinary
 
-**`server/.env`:**
+Toggle item availability:
 
-```dotenv
+"አለ" (Available) / "የለም" (Unavailable)
+
+🔍 Search
+Instantly filter menu items by name in the admin panel.
+
+⚙️ Settings
+Enable/disable daily auto-reset, which resets unavailable items to available at midnight (EAT).
+
+👥 Admin Management
+Register new admin accounts (only from within the admin panel).
+
+🔁 Navigation
+Easily return to the customer menu from admin pages.
+
+🧱 Tech Stack
+Frontend
+React (Vite)
+
+Zustand
+
+React Router v6
+
+Tailwind CSS
+
+Axios
+
+Headless UI
+
+React Icons
+
+Backend
+Node.js
+
+Express.js
+
+Mongoose
+
+MongoDB Atlas
+
+JWT (Json Web Tokens)
+
+bcryptjs
+
+Cloudinary
+
+Multer
+
+node-cron
+
+cookie-parser
+
+cors
+
+⚙️ Project Setup & Installation
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone <your-repository-url>
+cd <your-folder-name>
+2. Setup the Backend
+bash
+Copy
+Edit
+cd server
+npm install
+Create a .env file inside server/ (refer to .env.example if available).
+
+Add the required environment variables (see below).
+
+3. Setup the Frontend
+bash
+Copy
+Edit
+cd ../client
+npm install
+Create a .env file inside client/.
+
+Add the required environment variables.
+
+🔐 Environment Variables
+server/.env
+env
+Copy
+Edit
 PORT=5001
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_very_strong_jwt_secret
@@ -80,27 +133,44 @@ JWT_COOKIE_EXPIRES_IN_DAYS=30
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-FRONTEND_URL=http://localhost:5173 # For local dev; use Vercel URL for production variable on Render
-NODE_ENV=development # Use 'production' for production variable on Render
+FRONTEND_URL=http://localhost:5173  # Replace with your frontend URL in production
+NODE_ENV=development                # Change to 'production' on deployment
+client/.env
+env
+Copy
+Edit
+VITE_API_BASE_URL=http://localhost:5001/api  # Replace with your backend URL in production
+⚠️ Do not commit .env files to version control!
 
-
-client/.env:
-VITE_API_BASE_URL=http://localhost:5001/api # For local dev; use Render URL for production variable on Vercel
-Use code with caution.
-Dotenv
-Running Locally
-Start Backend:
+🧪 Running the App Locally
+Start Backend
+bash
+Copy
+Edit
 cd server
 npm run dev
-(Backend runs on port specified in .env or 5001)
-Start Frontend:
-Open a new terminal.
+Runs on http://localhost:5001 (or the port you set in .env)
+
+Start Frontend
+bash
+Copy
+Edit
 cd client
 npm run dev
-(Frontend runs on port specified by Vite, often 5173)
-Access: Open http://localhost:5173 (or the Vite port) in your browser.
-Initial Admin User Setup
-The first admin account must be created manually using the seed script, as registration is protected.
-Configure: Ensure MONGODB_URI in server/.env points to your target database. Set a strong password inside server/seed.js.
-Run Script: From the server directory, execute:
+Opens the app at http://localhost:5173 (or the port Vite uses)
+
+👤 Initial Admin Account Setup
+Since registration is protected, the first admin must be manually created via a seed script.
+
+Ensure your MongoDB URI is correctly set in server/.env.
+
+Edit the server/seed.js file to set a strong admin password.
+
+Run the script:
+
+bash
+Copy
+Edit
+cd server
 node seed.js
+Now you can log in via /login using the credentials defined in seed.js. After that, you can register more admins from the dashboard.
