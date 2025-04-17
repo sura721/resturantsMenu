@@ -50,7 +50,7 @@ This project provides restaurants with an easy way to offer customers a digital 
 1.  **Clone the repository:**
     ```bash
     git clone <your-repository-url>
-    cd digital-menu-adama
+    cd root folder name you want
     ```
 
 2.  **Setup Backend:**
@@ -82,3 +82,25 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 FRONTEND_URL=http://localhost:5173 # For local dev; use Vercel URL for production variable on Render
 NODE_ENV=development # Use 'production' for production variable on Render
+
+
+client/.env:
+VITE_API_BASE_URL=http://localhost:5001/api # For local dev; use Render URL for production variable on Vercel
+Use code with caution.
+Dotenv
+Running Locally
+Start Backend:
+cd server
+npm run dev
+(Backend runs on port specified in .env or 5001)
+Start Frontend:
+Open a new terminal.
+cd client
+npm run dev
+(Frontend runs on port specified by Vite, often 5173)
+Access: Open http://localhost:5173 (or the Vite port) in your browser.
+Initial Admin User Setup
+The first admin account must be created manually using the seed script, as registration is protected.
+Configure: Ensure MONGODB_URI in server/.env points to your target database. Set a strong password inside server/seed.js.
+Run Script: From the server directory, execute:
+node seed.js
